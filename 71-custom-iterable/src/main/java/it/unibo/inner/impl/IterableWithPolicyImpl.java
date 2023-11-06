@@ -1,6 +1,7 @@
 package it.unibo.inner.impl;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
@@ -8,7 +9,7 @@ import it.unibo.inner.api.IterableWithPolicy;
 
 public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
 
-  private final T[] data;
+  private final List<T> data;
   Predicate<T> filter;
 
   public IterableWithPolicyImpl(T[] data) {
@@ -22,7 +23,7 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
   }
 
   public IterableWithPolicyImpl(T[] data, Predicate<T> predicate) {
-    this.data = data;
+    this.data = List.of(data);
     this.filter = predicate;
   }
 
@@ -31,13 +32,13 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
     private int i = 0;
 
     private boolean isArrayFinished() {
-      return data.length == i;
+      return data.size() == i;
     }
 
 
     public boolean hasNext() {
       for (; !isArrayFinished(); i++) {
-        if (filter.test(data[i])) {
+        if (filter.test(data.get(i))) {
           return true;
         }
       }
@@ -48,7 +49,7 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
       if (isArrayFinished()) {
         throw new NoSuchElementException();
       }
-      return data[i++];
+      return data.get(i++);
     }
   }
 
