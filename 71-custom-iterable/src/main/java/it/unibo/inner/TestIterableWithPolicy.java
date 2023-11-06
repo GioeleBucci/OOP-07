@@ -1,6 +1,7 @@
 package it.unibo.inner;
 
 import it.unibo.inner.api.IterableWithPolicy;
+import it.unibo.inner.impl.IterableWithPolicyImpl;
 import it.unibo.inner.test.api.Product;
 import it.unibo.inner.test.impl.ProductImpl;
 
@@ -16,11 +17,11 @@ public class TestIterableWithPolicy {
   }
 
   private static <T> IterableWithPolicy<T> getIterableWithPolicy(T[] elements, Predicate<T> filter) {
-    return null; // TODO: return the implementation of IterableWithPolicy
+    return new IterableWithPolicyImpl<>(elements, filter);
   }
 
   private static <T> IterableWithPolicy<T> getIterableWithPolicy(T[] elements) {
-    return null; // TODO: return the implementation of IterableWithPolicy
+    return new IterableWithPolicyImpl<>(elements);
   }
 
   public static void main(String[] args) {
@@ -37,6 +38,11 @@ public class TestIterableWithPolicy {
     };
 
     IterableWithPolicy<Integer> evenIterable = getIterableWithPolicy(test1, filterEven);
+
+    for (Integer integer : evenIterable) {
+      System.out.println(integer);
+    }
+
     IterableWithPolicy<Integer> oddIterable = getIterableWithPolicy(test1, filterOdd);
 
     assertContentEqualsInOrder(evenIterable, Arrays.asList(2, 4, 6, 8));
