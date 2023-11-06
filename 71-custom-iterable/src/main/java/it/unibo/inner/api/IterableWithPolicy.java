@@ -7,9 +7,11 @@ import java.util.function.Predicate;
  * The policy is used to filter out the elements during the iteration.
  */
 public interface IterableWithPolicy<T> extends Iterable<T> {
-    /**
-     * Configures the policy used to filter out the elements to iterate.
-     * @param filter the predicate used to filter out the elements in the collection during the iteration.
-     */
-    void setIterationPolicy(Predicate<T> filter);
+  /**
+   * Configures the policy used to filter out the elements to iterate.
+   * 
+   * @param filter the predicate used to filter out the elements in the collection
+   *               during the iteration.
+   */
+  void setIterationPolicy(Predicate<T> filter);
 }

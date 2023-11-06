@@ -9,13 +9,13 @@ import java.util.Objects;
  */
 public final class MonthSorterNested implements MonthSorter {
 
-    @Override
-    public Comparator<String> sortByDays() {
-        return null;
-    }
+  @Override
+  public Comparator<String> sortByDays() {
+    return null;
+  }
 
-    @Override
-    public Comparator<String> sortByOrder() {
-        return null;
-    }
+  @Override
+  public Comparator<String> sortByOrder() {
+    return null;
+  }
 }
