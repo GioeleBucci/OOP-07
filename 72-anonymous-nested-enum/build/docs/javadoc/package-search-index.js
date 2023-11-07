@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"it.unibo.functional"},{"l":"it.unibo.functional.api"},{"l":"it.unibo.nestedenum"}];updateSearchResults();
