@@ -12,10 +12,10 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
   private final List<T> data;
   Predicate<T> filter;
 
-  public IterableWithPolicyImpl(T[] data) {
+  public IterableWithPolicyImpl(final T[] data) {
     this(
         data,
-        new Predicate<T>() {
+        new Predicate<T>() { // default filter (always evaluate to true)
           public boolean test(T t) {
             return true;
           }
@@ -31,13 +31,8 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
 
     private int i = 0;
 
-    private boolean isArrayFinished() {
-      return data.size() == i;
-    }
-
-
     public boolean hasNext() {
-      for (; !isArrayFinished(); i++) {
+      for (; i < data.size(); i++) {
         if (filter.test(data.get(i))) {
           return true;
         }
@@ -46,7 +41,7 @@ public class IterableWithPolicyImpl<T> implements IterableWithPolicy<T> {
     }
 
     public T next() {
-      if (isArrayFinished()) {
+      if (!hasNext()) {
         throw new NoSuchElementException();
       }
       return data.get(i++);

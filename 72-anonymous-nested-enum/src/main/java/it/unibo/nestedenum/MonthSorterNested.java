@@ -1,11 +1,7 @@
 package it.unibo.nestedenum;
 
-import java.sql.Array;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 /**
  * Implementation of {@link MonthSorter}.
@@ -73,7 +69,6 @@ public final class MonthSorterNested implements MonthSorter {
       public int compare(String m1, String m2) {
         //var months = Arrays.asList(Month.values());
         var months = List.of(Month.values());
-        System.out.println(months);
         return months.indexOf(Month.fromString(m1)) - months.indexOf(Month.fromString(m2));
       }
     };
